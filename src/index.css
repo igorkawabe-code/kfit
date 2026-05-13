@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { -webkit-tap-highlight-color: transparent; }
+  html { background-color: #060606; color: #ffffff; }
+  body {
+    font-family: 'Barlow', sans-serif;
+    background-color: #060606;
+    color: #ffffff;
+    overscroll-behavior: none;
+    -webkit-font-smoothing: antialiased;
+  }
+  .safe-bottom { padding-bottom: max(env(safe-area-inset-bottom, 16px), 16px); }
+  /* Garante espaço suficiente para Dynamic Island e notch em iPhones */
+  .safe-top { padding-top: max(env(safe-area-inset-top, 0px), 54px); }
+}
+
+@layer components {
+  .btn-primary {
+    @apply w-full bg-accent text-[#060606] font-display text-xl tracking-wider py-4 rounded-xl 
+           active:scale-[0.97] transition-transform duration-100 disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply w-full bg-surface2 text-white font-body font-semibold text-base py-4 rounded-xl border border-zinc-700
+           active:scale-[0.97] transition-transform duration-100;
+  }
+  .card { @apply bg-surface rounded-2xl p-4 border border-zinc-800; }
+  .input-field {
+    @apply w-full bg-surface2 border border-zinc-700 rounded-xl px-4 py-3.5 text-white 
+           font-body text-base placeholder-zinc-600 focus:outline-none focus:border-accent 
+           focus:ring-1 focus:ring-accent transition-colors;
+  }
+  .label { @apply text-zinc-400 text-sm font-body font-medium mb-1.5 block; }
+  .page-title { @apply font-display text-4xl tracking-wider text-white; }
+  .section-title { @apply font-body font-semibold text-zinc-400 text-xs uppercase tracking-widest; }
+}
+
+::-webkit-scrollbar { width: 0; }
+button { user-select: none; }
+
+@keyframes pop {
+  0% { transform: scale(0.8); opacity: 0; }
+  60% { transform: scale(1.1); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-pop { animation: pop 0.4s ease-out forwards; }
